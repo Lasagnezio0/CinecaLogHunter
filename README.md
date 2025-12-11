@@ -62,17 +62,17 @@ Cosa cercare: Inserisci la stringa o il pattern (es. ERROR, CRITICAL, Exception)
 * **Tutti i log anche nelle sottocartelle:** **/*.log
 
 ### Esempio di output:
-[Analisi in corso...]
-Leggo: server_nodo1.log ...
-Leggo: server_nodo2.log ...
-
-+-------------------------------------+
-| File              | Match           |
-+-------------------------------------+
-| server_nodo1.log  | 45              |
-| error_dump.log    | 1200            |
-+-------------------------------------+
-
+[Analisi in corso...]  
+Leggo: server_nodo1.log ...  
+Leggo: server_nodo2.log ...  
+  
++-------------------------------------+  
+| File              | Match           |  
++-------------------------------------+  
+| server_nodo1.log  | 45              |  
+| error_dump.log    | 1200            |  
++-------------------------------------+  
+  
 ## Architettura Tecnica
 
 Il progetto segue un approccio **Clean & Portable**:
