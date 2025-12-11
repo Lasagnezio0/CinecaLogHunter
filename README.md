@@ -1,5 +1,3 @@
-# CINECA Log Hunter
-
 ```
 ██╗      ██████╗  ██████╗    ██╗  ██╗██╗   ██╗███╗   ██╗████████╗███████╗██████╗ 
 ██║     ██╔═══██╗██╔════╝    ██║  ██║██║   ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
@@ -33,7 +31,7 @@ Progettato per essere **portabile** e **performante**, combina la flessibilità 
 
 ---
 
-## 📦 Installazione
+## Installazione
 
 Non serve installare nulla manualmente. Clona il repository ed esegui lo script di avvio per il tuo sistema operativo.
 
