@@ -2,7 +2,7 @@
 venv/
 __pycache__/
 
-# Output e Log (Ignoriamo la nuova cartella ordinata)
+# Output e Log
 SCANSIONI/
 *.log
 *.txt

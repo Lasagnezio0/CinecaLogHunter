@@ -1,3 +1,4 @@
+#import librerie standard
 import sys
 import shutil
 import subprocess
@@ -8,7 +9,7 @@ import glob
 import shlex 
 from datetime import datetime
 
-# --- IMPORTIAMO LE LIBRERIE GRAFICHE ---
+# import librerie esterne grafiche
 try:
     from rich.console import Console
     from rich.panel import Panel
@@ -16,7 +17,7 @@ try:
     from rich.table import Table
     from rich.prompt import Prompt
     from rich.status import Status
-    # Proviamo a importare pyfiglet per l'ASCII art
+    # Per asciiart
     try:
         import pyfiglet
     except ImportError:
@@ -27,12 +28,13 @@ except ImportError:
 
 console = Console()
 
-# --- 1. CONFIGURAZIONE MOTORE ---
+# visione motore: se esso è presente localmente (bin/rg o bin/rg.exe) lo usa, altrimenti cerca rg/grep di sistema
 def get_search_engine(context_lines=20):
     system_os = platform.system()
     base_dir = os.path.dirname(os.path.abspath(__file__))
     bin_dir = os.path.join(base_dir, "bin")
     
+    #se è windows usiamo il .exe
     if system_os == "Windows":
         local_rg_name = "rg.exe"
     else:
@@ -56,7 +58,7 @@ def get_search_engine(context_lines=20):
     
     return None, None
 
-# --- 2. CORE RICERCA ---
+# Cuore della ricerca
 def search_in_file(filepath, search_term, output_folder):
     engine_cmd, engine_name = get_search_engine(context_lines=20)
     if not engine_cmd: return 0, "Motore mancante"
@@ -78,7 +80,7 @@ def search_in_file(filepath, search_term, output_folder):
     
     return match_count, "OK"
 
-# --- 3. MAIN ---
+# Funzione principale, grafica
 def main():
     console.clear()
     _, engine_name = get_search_engine()
@@ -124,18 +126,16 @@ def main():
         console.print(f"[red]Nessun file trovato![/red]")
         return
 
-    # --- OUTPUT SETUP CORRETTO ---
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    # 1. Definiamo la cartella madre
+    # carterlla mda salvare i report
     base_report_dir = "SCANSIONI"
     
-    # 2. Definiamo la sottocartella specifica
+    #sottocartella specifica
     out_folder = os.path.join(base_report_dir, f"Report_{ts}")
     
-    # 3. Creiamo tutto in un colpo solo (makedirs crea anche i genitori se mancano)
+    # Creiamo cartelle se non ci sono, altrimenti aggiungiamo quelle nuove
     os.makedirs(out_folder, exist_ok=True)
-    # -----------------------------
 
     # Esecuzione
     table = Table(title=f"Risultati: {search_term}", border_style="cyan")
