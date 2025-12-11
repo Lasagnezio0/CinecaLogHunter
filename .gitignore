@@ -1,0 +1,11 @@
+# Ambienti virtuali
+venv/
+__pycache__/
+
+# Output e Log (Ignoriamo la nuova cartella ordinata)
+SCANSIONI/
+*.log
+*.txt
+
+# Sistema
+.DS_Store
