@@ -47,47 +47,71 @@ chmod +x start.sh
 #### Assicurati di avere il pacchetto necessario:
 sudo apt install python3-venv
 
-## Utilizzo
+## 🚀 Utilizzo
 
-Una volta avviato, il programma ti guiderà passo passo:
+Una volta avviato, il programma ti guiderà passo passo attraverso un'interfaccia interattiva.
 
-Cosa cercare: Inserisci la stringa o il pattern (es. ERROR, CRITICAL, Exception).
+### 🔍 Fase 1: Cosa Cercare?
 
-### Dove cercare:
+Inserisci la stringa o il pattern regex da ricercare nei log:
+* `ERROR` - ricerca stringhe esatte
+* `CRITICAL` - case-insensitive 
+* `Exception.*occurred` - pattern regex avanzati
 
-* **File singolo:** server.log
+### 📂 Fase 2: Dove Cercare?
 
-* **Tutti i log nella cartella:** *.log
+Specifica il percorso target con questi pattern:
 
-* **Tutti i log anche nelle sottocartelle:** **/*.log
+* **File singolo:** `server.log`
+* **Tutti i log nella cartella:** `*.log`
+* **Ricerca ricorsiva profonda:** `**/*.log`
+* **Filtri specifici:** `logs/**/*error*.log`
 
-### Esempio di output:
-[Analisi in corso...]  
-Leggo: server_nodo1.log ...  
-Leggo: server_nodo2.log ...  
-  
-+-------------------------------------+  
-| File              | Match           |  
-+-------------------------------------+  
-| server_nodo1.log  | 45              |  
-| error_dump.log    | 1200            |  
-+-------------------------------------+  
-  
-## Architettura Tecnica
+### 📊 Fase 3: Risultati
 
-Il progetto segue un approccio **Clean & Portable**:
+Il tool genera un report strutturato:
 
-Core: Python 3 gestisce la logica di business, l'input utente e la gestione dei percorsi (shlex, glob).
-Engine:
+```
+[Analisi in corso...] ⏳
+Leggo: server_nodo1.log ...
+Leggo: server_nodo2.log ...
 
-#### 1. Su Windows, viene eseguito *bin/rg.exe*.
+┌─────────────────────────┬────────────┐
+│ File                    │   Match    │
+├─────────────────────────┼────────────┤
+│ server_nodo1.log        │     45     │
+│ error_dump.log          │   1200     │
+└─────────────────────────┴────────────┘
+```
 
-#### 2. Su Linux, viene eseguito *bin/rg*.
+I risultati vengono salvati automaticamente in `SCANSIONI/Report_TIMESTAMP/` per una consultazione successiva.
 
-**Se i binari portatili falliscono, il sistema cerca grep installato nel sistema come fallback**.
+---
 
-Data Visualization: Librerie rich e pyfiglet per la UX.
+## 🏗️ Architettura Tecnica
 
-## Autore
+Il progetto è costruito su un'architettura **ibrida e modulare**:
 
-Sviluppato da Alessandro ed Enrico per progetto PCTO CINECA.
+### Componenti Principali
+
+| Componente | Tecnologia | Ruolo |
+|-----------|-----------|-------|
+| **Frontend** | Python 3 + Rich | Logica di business, interfaccia TUI, gestione percorsi |
+| **Search Engine** | Ripgrep (Rust) | Motore I/O ad altissime performance |
+| **Fallback** | grep (sistema) | Backup per ambienti senza binari |
+| **Visualizzazione** | Rich + Pyfiglet | Output colorato e formattato |
+
+### Flusso di Esecuzione
+
+1. **Parsing Input:** L'interfaccia Python elabora pattern di ricerca e percorsi usando `shlex` e `glob`
+2. **Selezione Engine:** 
+   - Windows → esegue `bin/rg.exe`
+   - Linux → esegue `bin/rg`
+3. **Fallback Logic:** Se i binari portatili non sono disponibili, ricade su `grep` di sistema
+4. **Aggregazione:** I risultati vengono raccolti e formattati per la visualizzazione
+
+---
+
+## 👥 Autori
+
+Sviluppato da **Alessandro** ed **Enrico** presso **CINECA** nel percorso PCTO.
