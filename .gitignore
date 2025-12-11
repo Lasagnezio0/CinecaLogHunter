@@ -7,5 +7,7 @@ SCANSIONI/
 *.log
 *.txt
 
+!requirements.txt
+
 # Sistema
 .DS_Store
