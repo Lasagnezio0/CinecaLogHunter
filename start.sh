@@ -4,30 +4,28 @@ echo "=========================================="
 echo "      CINECA LOG HUNTER - LINUX SETUP     "
 echo "=========================================="
 
-# 1. Controlla se Python3 è installato
-if ! command -v python3 &> /dev/null
-then
-    echo "[ERRORE] Python3 non trovato. Installalo (es. sudo apt install python3)"
-    exit 1
-fi
+# 1. Pulizia preventiva (se il venv è rotto, lo rifacciamo)
+# Scommenta la riga sotto se continua a dare problemi
+# rm -rf venv
 
 # 2. Crea il Virtual Environment se non esiste
 if [ ! -d "venv" ]; then
     echo "[INFO] Creazione ambiente virtuale..."
-    python3 -m venv venv
+    # Se questo fallisce, hai saltato il PASSO 1!
+    python3 -m venv venv || { echo "[ERRORE] Impossibile creare venv. Esegui: sudo apt install python3-venv"; exit 1; }
 fi
 
-# 3. Attiva venv e installa dipendenze
-echo "[INFO] Controllo dipendenze..."
-source venv/bin/activate
-pip install -r requirements.txt > /dev/null 2>&1
+# 3. Installa dipendenze (USANDO IL PIP DEL VENV, NON QUELLO DI SISTEMA)
+echo "[INFO] Installazione/Verifica dipendenze..."
+./venv/bin/pip install -r requirements.txt
 
-# 4. Assicura che il motore portatile sia eseguibile
+# 4. Permessi al motore portatile
 if [ -f "bin/rg" ]; then
     chmod +x bin/rg
 fi
 
-# 5. Avvia il programma
+# 5. Avvia il programma (USANDO IL PYTHON DEL VENV)
+echo ""
 echo "[INFO] Avvio Log Hunter..."
 echo ""
-python3 main.py
+./venv/bin/python3 main.py
