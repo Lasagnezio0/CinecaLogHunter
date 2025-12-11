@@ -38,13 +38,13 @@ Per **start.sh**:
 
 Apri il terminale nella cartella del progetto:
 
-# 1. Rendi eseguibile lo script (solo la prima volta)
+#### 1. Rendi eseguibile lo script (solo la prima volta)
 chmod +x start.sh
 
-# 2. Avvia il tool
+#### 2. Avvia il tool
 ./start.sh
 
-# Assicurati di avere il pacchetto necessario:
+#### Assicurati di avere il pacchetto necessario:
 sudo apt install python3-venv
 
 ## Utilizzo
@@ -55,11 +55,11 @@ Cosa cercare: Inserisci la stringa o il pattern (es. ERROR, CRITICAL, Exception)
 
 ### Dove cercare:
 
-**File singolo:** server.log
+* **File singolo:** server.log
 
-**Tutti i log nella cartella:** *.log
+* **Tutti i log nella cartella:** *.log
 
-**Tutti i log anche nelle sottocartelle:** **/*.log
+* **Tutti i log anche nelle sottocartelle:** **/*.log
 
 ### Esempio di output:
 [Analisi in corso...]
@@ -80,9 +80,9 @@ Il progetto segue un approccio **Clean & Portable**:
 Core: Python 3 gestisce la logica di business, l'input utente e la gestione dei percorsi (shlex, glob).
 Engine:
 
-## 1. Su Windows, viene eseguito *bin/rg.exe*.
+#### 1. Su Windows, viene eseguito *bin/rg.exe*.
 
-## 2. Su Linux, viene eseguito *bin/rg*.
+#### 2. Su Linux, viene eseguito *bin/rg*.
 
 **Se i binari portatili falliscono, il sistema cerca grep installato nel sistema come fallback**.
 
