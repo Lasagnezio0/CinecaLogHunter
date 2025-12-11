@@ -1,5 +1,14 @@
 # CINECA Log Hunter
 
+```
+██╗      ██████╗  ██████╗    ██╗  ██╗██╗   ██╗███╗   ██╗████████╗███████╗██████╗ 
+██║     ██╔═══██╗██╔════╝    ██║  ██║██║   ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
+██║     ██║   ██║██║  ███╗   ███████║██║   ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝
+██║     ██║   ██║██║   ██║   ██╔══██║██║   ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗
+███████╗╚██████╔╝╚██████╔╝   ██║  ██║╚██████╔╝██║ ╚████║   ██║   ███████╗██║  ██║
+╚══════╝ ╚═════╝  ╚═════╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+```
+
 > **High-Performance Log Analysis Tool**  
 > Sviluppato durante il percorso PCTO presso CINECA.
 
@@ -47,18 +56,17 @@ chmod +x start.sh
 #### Assicurati di avere il pacchetto necessario:
 sudo apt install python3-venv
 
-## 🚀 Utilizzo
+## Utilizzo
 
 Una volta avviato, il programma ti guiderà passo passo attraverso un'interfaccia interattiva.
 
-### 🔍 Fase 1: Cosa Cercare?
+### Fase 1: Cosa Cercare?
 
-Inserisci la stringa o il pattern regex da ricercare nei log:
+Inserisci la stringa da ricercare nei log:
 * `ERROR` - ricerca stringhe esatte
 * `CRITICAL` - case-insensitive 
-* `Exception.*occurred` - pattern regex avanzati
 
-### 📂 Fase 2: Dove Cercare?
+### Fase 2: Dove Cercare?
 
 Specifica il percorso target con questi pattern:
 
@@ -67,7 +75,7 @@ Specifica il percorso target con questi pattern:
 * **Ricerca ricorsiva profonda:** `**/*.log`
 * **Filtri specifici:** `logs/**/*error*.log`
 
-### 📊 Fase 3: Risultati
+### Fase 3: Risultati
 
 Il tool genera un report strutturato:
 
@@ -88,7 +96,7 @@ I risultati vengono salvati automaticamente in `SCANSIONI/Report_TIMESTAMP/` per
 
 ---
 
-## 🏗️ Architettura Tecnica
+## Architettura Tecnica
 
 Il progetto è costruito su un'architettura **ibrida e modulare**:
 
@@ -112,6 +120,6 @@ Il progetto è costruito su un'architettura **ibrida e modulare**:
 
 ---
 
-## 👥 Autori
+## Autori
 
 Sviluppato da **Alessandro** ed **Enrico** presso **CINECA** nel percorso PCTO.
